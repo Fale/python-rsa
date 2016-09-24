@@ -48,7 +48,7 @@ class BinaryTest(unittest.TestCase):
         a = encrypted[5]
         if is_bytes(a):
             a = ord(a)
-        altered_a = (a + 1) % 256
+        altered_a = (a xor 1) % 256
         encrypted = encrypted[:5] + byte(altered_a) + encrypted[6:]
 
         self.assertRaises(pkcs1.DecryptionError, pkcs1.decrypt, encrypted,
